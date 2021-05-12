@@ -1,23 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
+import Landing from "components/landing";
+import Login from "components/login";
+import Header from "components/header";
+import Questions from "components/questions";
+import { NoAuthRoute } from "components/routes";
 
 function App() {
+  console.log("APP");
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <BrowserRouter>
+        <Header />
+        <Switch>
+          <Route exact path="/" component={Landing} />
+          <NoAuthRoute path="/login" component={Login} />
+          <Route path="/questions" component={Questions} />
+        </Switch>
+      </BrowserRouter>
     </div>
   );
 }
